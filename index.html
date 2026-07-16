@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TrustFlow | Payment Risk Dashboard</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+  <main>
+    <header>
+      <p class="eyebrow">TRUSTFLOW / DEMO</p>
+      <h1>Explainable payment-risk dashboard</h1>
+      <p class="sub">Signals are recommendations, not fraud verdicts.</p>
+    </header>
+
+    <section class="layout">
+      <form id="risk-form" class="card">
+        <h2>Transaction context</h2>
+
+        <div class="notice">
+          Privacy: passwords and OTPs below are never sent. Only aggregate
+          correction, paste and tab-switch counts are used.
+        </div>
+
+        <h3>Secure input simulation</h3>
+
+        <div class="fields">
+          <label>
+            Password
+            <input id="password" type="password" placeholder="never transmitted">
+          </label>
+
+          <label>
+            OTP
+            <input id="otp" inputmode="numeric" placeholder="never transmitted">
+          </label>
+        </div>
+
+        <h3>User history · last 30 days</h3>
+
+        <div class="fields">
+          <label>Active days<input name="active_days" type="number" min="0" max="30" value="25"></label>
+          <label>Total transactions<input name="total_user_transactions" type="number" min="0" value="50"></label>
+          <label>User disputes<input name="user_disputes" type="number" min="0" value="0"></label>
+          <label>Device changes<input name="device_changes" type="number" min="0" value="0"></label>
+        </div>
+
+        <h3>Merchant history · last 30 days</h3>
+
+        <div class="fields">
+          <label>Merchant transactions<input name="merchant_transactions" type="number" min="0" value="100"></label>
+          <label>Merchant successes<input name="merchant_successes" type="number" min="0" value="95"></label>
+          <label>Merchant failures<input name="merchant_failures" type="number" min="0" value="5"></label>
+          <label>Merchant chargebacks<input name="merchant_chargebacks" type="number" min="0" value="0"></label>
+          <label>Merchant disputes<input name="merchant_disputes" type="number" min="0" value="1"></label>
+          <label>System health (0–1)<input name="system_health" type="number" min="0" max="1" step=".01" value=".98"></label>
+          <label>Failed auth attempts<input name="failed_auth_attempts" type="number" min="0" value="0"></label>
+        </div>
+
+        <div class="checks">
+          <label><input name="has_timeout" type="checkbox"> Processing timeout</label>
+          <label><input name="has_processing_error" type="checkbox"> Processing error</label>
+          <label><input name="payment_already_credited" type="checkbox"> Already credited</label>
+          <label><input name="is_new_device" type="checkbox"> New device/browser</label>
+        </div>
+
+        <button>Evaluate payment risk</button>
+      </form>
+
+      <aside class="card side">
+        <h2>Behavioural signals</h2>
+
+        <div class="metric">
+          <span>Secure-input corrections</span>
+          <strong id="backspaces">0</strong>
+        </div>
+
+        <div class="metric">
+          <span>Paste attempts</span>
+          <strong id="pastes">0</strong>
+        </div>
+
+        <div class="metric">
+          <span>Checkout focus losses</span>
+          <strong id="focus-losses">0</strong>
+        </div>
+
+        <p class="muted">
+          Behaviour can lead to review, but never independently blocks a payment.
+        </p>
+
+        <section id="result" hidden>
+          <hr>
+
+          <p class="eyebrow">RECOMMENDATION</p>
+          <div id="decision"></div>
+          <div id="score"></div>
+
+          <div id="score-list"></div>
+
+          <h3>Reasons</h3>
+          <ul id="reasons"></ul>
+
+          <h3>Settlement action</h3>
+          <p id="settlement"></p>
+
+          <p id="privacy" class="notice"></p>
+        </section>
+      </aside>
+    </section>
+  </main>
+
+  <script src="/app.js"></script>
+</body>
+</html>
