@@ -95,10 +95,27 @@
           <hr>
 
           <p class="eyebrow">RECOMMENDATION</p>
-          <div id="decision"></div>
-          <div id="score"></div>
 
-          <div id="score-list"></div>
+          <div class="gauge-row">
+            <div class="gauge-wrap">
+              <canvas id="gauge-chart"></canvas>
+              <div class="gauge-center">
+                <span id="score"></span>
+                <small>/ 100</small>
+              </div>
+            </div>
+            <div id="decision"></div>
+          </div>
+
+          <h3>Score breakdown</h3>
+          <div class="chart-box">
+            <canvas id="scores-chart" role="img" aria-label="Bar chart of trust sub-scores">Sub-score breakdown, see reasons list below.</canvas>
+          </div>
+
+          <h3>Behavioural signal timeline</h3>
+          <div class="chart-box short">
+            <canvas id="timeline-chart" role="img" aria-label="Line chart of secure-input corrections, pastes and focus losses over the session">Behavioural events over the session.</canvas>
+          </div>
 
           <h3>Reasons</h3>
           <ul id="reasons"></ul>
@@ -112,6 +129,7 @@
     </section>
   </main>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
   <script src="/app.js"></script>
 </body>
 </html>
