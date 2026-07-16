@@ -91,77 +91,24 @@
           Behaviour can lead to review, but never independently blocks a payment.
         </p>
 
-        <div class="privacy-box">
-          <strong>Privacy guarantee</strong>
-          <span>No password, OTP, typed text, or individual keystroke is stored.</span>
-        </div>
-
         <section id="result" hidden>
           <hr>
 
-          <p class="eyebrow">RISK RECOMMENDATION</p>
+          <p class="eyebrow">RECOMMENDATION</p>
           <div id="decision"></div>
           <div id="score"></div>
-          <p id="decision-summary" class="muted"></p>
 
-          <section class="action-panel">
-            <p class="eyebrow">RECOMMENDED OPERATIONAL ACTION</p>
-            <h3 id="settlement"></h3>
-            <ol id="next-steps"></ol>
-          </section>
+          <div id="score-list"></div>
 
-          <section id="override-panel" class="override-panel" hidden>
-            <p class="eyebrow">SAFETY OVERRIDE TRIGGERED</p>
-            <ul id="override-rules"></ul>
-          </section>
-
-          <h3>Score breakdown</h3>
-          <div id="score-list" class="score-list"></div>
-
-          <h3>Risk reasons</h3>
+          <h3>Reasons</h3>
           <ul id="reasons"></ul>
 
-          <h3>Decision audit trail</h3>
-          <ol id="audit-log" class="audit-log"></ol>
+          <h3>Settlement action</h3>
+          <p id="settlement"></p>
 
           <p id="privacy" class="notice"></p>
         </section>
       </aside>
-    </section>
-
-    <section class="card queue-card">
-      <div class="queue-title">
-        <div>
-          <p class="eyebrow">OPERATIONS VIEW</p>
-          <h2>Demo review queue</h2>
-        </div>
-
-        <p class="muted">
-          Browser-session demo data; not a persistent production database.
-        </p>
-      </div>
-
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Transaction ID</th>
-              <th>Risk score</th>
-              <th>Status</th>
-              <th>Main reason</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-
-          <tbody id="review-queue">
-            <tr>
-              <td colspan="5" class="empty-state">
-                No review or block cases evaluated yet.
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
     </section>
   </main>
 
