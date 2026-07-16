@@ -242,11 +242,13 @@ def risk_decision(p, overall):
     )
 
     if (
-        severe_merchant_risk or
-        (p["has_processing_error"] and p["has_timeout"]) or
-        overall < 40
-    ):
-        return "BLOCK"
+    severe_merchant_risk or
+    (p["has_processing_error"] and p["has_timeout"]) or
+    p["system_health"] < 0.35 or
+    overall < 40
+   ):
+
+     return "BLOCK"
 
     if (
         p["total_user_transactions"] == 0 or
