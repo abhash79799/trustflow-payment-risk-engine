@@ -202,7 +202,18 @@ ul {
   border-radius: 2px;
   display: inline-block;
 }
-
+.empty-state {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.85rem;
+  padding: 0 20px;
+  margin: 0;
+}
 @media (max-width: 800px) {
   .layout,
   .fields {
