@@ -4,7 +4,6 @@ const behaviour = {
   focus_loss_count: 0
 };
 
-// timestamped log of behaviour events, used to draw the timeline chart
 const sessionStart = Date.now();
 const eventLog = [];
 
@@ -46,7 +45,6 @@ document.addEventListener("visibilitychange", () => {
   }
 });
 
-// --- chart instances, recreated on every submit ---
 let gaugeChart = null;
 let scoresChart = null;
 let timelineChart = null;
@@ -138,7 +136,6 @@ const renderTimeline = () => {
   canvas.hidden = false;
   emptyMsg.hidden = true;
 
-  // build cumulative counts per event type across the session timeline
   const stamps = [0, ...eventLog.map((e) => e.t)];
   const uniqueTimes = [...new Set(stamps)].sort((a, b) => a - b);
 
@@ -182,38 +179,6 @@ const renderTimeline = () => {
   );
 };
 
-  if (timelineChart) timelineChart.destroy();
-  timelineChart = new Chart(byId("timeline-chart"), {
-    type: "line",
-    data: {
-      labels: uniqueTimes.map((t) => `${t}s`),
-      datasets: [
-        { label: "Corrections", data: cumulative("backspace"), borderColor: "#6cbaff", backgroundColor: "rgba(108,186,255,0.1)", tension: 0.3, pointRadius: 3, borderWidth: 2, fill: true },
-        { label: "Pastes", data: cumulative("paste"), borderColor: "#ffd166", backgroundColor: "rgba(255,209,102,0.1)", tension: 0.3, pointRadius: 3, borderWidth: 2, fill: true },
-        { label: "Focus losses", data: cumulative("focus_loss"), borderColor: "#ff6b6b", backgroundColor: "rgba(255,107,107,0.1)", tension: 0.3, pointRadius: 3, borderWidth: 2, fill: true }
-      ]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      scales: {
-        x: { grid: { display: false }, ticks: { color: "#a9c0d5", font: { size: 10 } } },
-        y: { min: 0, grid: { color: "#20384e" }, ticks: { color: "#a9c0d5", font: { size: 10 }, stepSize: 1 } }
-      },
-      plugins: { legend: { display: false } }
-    }
-  });
-
-  byId("timeline-chart").parentElement.insertAdjacentHTML(
-    "afterend",
-    `<div class="chart-legend">
-      <span><i style="background:#6cbaff"></i>Corrections</span>
-      <span><i style="background:#ffd166"></i>Pastes</span>
-      <span><i style="background:#ff6b6b"></i>Focus losses</span>
-    </div>`
-  );
-
-
 document.querySelector("#risk-form").addEventListener("submit", async (event) => {
   event.preventDefault();
 
@@ -236,7 +201,6 @@ document.querySelector("#risk-form").addEventListener("submit", async (event) =>
     return;
   }
 
-  // remove any previously injected legend before re-rendering
   document.querySelectorAll(".chart-legend").forEach((el) => el.remove());
 
   byId("result").hidden = false;
